@@ -3,9 +3,407 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Aashif Ali | Portfolio</title>
+    <meta name="description" content="Aashif Ali — Backend & Security. I build scalable server-side systems and design secure architectures.">
+    <meta name="author" content="Aashif Ali">
+    <link rel="canonical" href="https://aashif.dev/">
+
+    <!-- Browser-tab color, updated live by the theme toggle (see script) -->
+    <meta name="theme-color" id="theme-color-meta" content="#09090b">
+
+    <!-- Inline SVG favicon: terminal "$" prompt, no external request -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%2309090b'/%3E%3Ctext%20x='16'%20y='23'%20font-family='ui-monospace,Menlo,monospace'%20font-size='22'%20font-weight='700'%20fill='%232bff88'%20text-anchor='middle'%3E$%3C/text%3E%3C/svg%3E">
+
+    <!-- Open Graph / Twitter link previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aashif.dev/">
+    <meta property="og:title" content="Aashif Ali | Backend & Security">
+    <meta property="og:description" content="I build scalable server-side systems and design secure architectures — plus security research and bug bounty.">
+    <meta property="og:site_name" content="aashif.dev">
+    <meta property="og:image" content="https://aashif.dev/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Terminal window: $ whoami — Aashif Ali, Backend & Security Engineer.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aashif Ali | Backend & Security">
+    <meta name="twitter:description" content="I build scalable server-side systems and design secure architectures — plus security research and bug bounty.">
+    <meta name="twitter:image" content="https://aashif.dev/assets/og-image.png">
+
+    <!-- Structured data: helps search engines associate this page with you -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Aashif Ali",
+      "url": "https://aashif.dev/",
+      "image": "https://aashif.dev/assets/og-image.png",
+      "jobTitle": "Backend & Security Engineer",
+      "description": "I build scalable server-side systems and design secure architectures, with a focus on security research and bug bounty.",
+      "email": "mailto:hello@aashif.dev",
+      "knowsAbout": ["Backend Development", "Security Research", "Bug Bounty", "APIs", "AI Agents"],
+      "sameAs": [
+        "https://github.com/a45hif",
+        "https://linkedin.com/in/a45hif"
+      ]
+    }
+    </script>
+
+    <!-- Set theme before paint to avoid a flash of the wrong theme -->
+    <script>
+        (function () {
+            // Dark is the default; only honor an explicit prior "light" choice.
+            if (localStorage.getItem('theme') !== 'light') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+
+    <style>
+        /* ---------- Design tokens ---------- */
+        :root {
+            /* Zinc scale */
+            --zinc-50:  #fafafa;
+            --zinc-200: #e4e4e7;
+            --zinc-300: #d4d4d8;
+            --zinc-400: #a1a1aa;
+            --zinc-500: #71717a;
+            --zinc-600: #52525b;
+            --zinc-700: #3f3f46;
+            --zinc-800: #27272a;
+            --zinc-900: #18181b;
+            --zinc-950: #09090b;
+            --white:    #ffffff;
+
+            --emerald-400: #34d399;
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+
+            /* Semantic (light mode defaults) */
+            --bg:            var(--zinc-50);
+            --fg:            var(--zinc-900);
+            --fg-strong:     var(--zinc-900);
+            --muted:         var(--zinc-600);
+            --faint:         var(--zinc-500);
+            --hint:          var(--zinc-400);
+            --border:        var(--zinc-300);
+            --border-hover:  var(--zinc-200);
+            --accent:        #15803d;
+            --accent-hover:  #16a34a;
+            --icon:          var(--zinc-700);
+
+            --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+                         "Liberation Mono", monospace;
+        }
+
+        html.dark {
+            --bg:            var(--zinc-950);
+            --fg:            var(--zinc-50);
+            --fg-strong:     var(--white);
+            --muted:         var(--zinc-400);
+            --faint:         var(--zinc-500);
+            --hint:          var(--zinc-400);
+            --border:        var(--zinc-800);
+            --border-hover:  var(--zinc-900);
+            --accent:        #2bff88;
+            --accent-hover:  #2bff88;
+            --icon:          var(--zinc-300);
+        }
+
+        /* ---------- Reset ---------- */
+        *, *::before, *::after { box-sizing: border-box; }
+        html { -webkit-text-size-adjust: 100%; }
+        body { margin: 0; }
+        a { color: inherit; text-decoration: none; }
+        button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+        strong { font-weight: 700; }
+
+        /* ---------- Base ---------- */
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            font-family: var(--font-mono);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+        }
+
+        ::selection {
+            background-color: #22c55e;
+            color: #000;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 42rem;
+            margin-inline: auto;
+            padding-inline: 1.5rem;
+        }
+
+        /* ---------- Header ---------- */
+        .site-header {
+            padding-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--hint);
+        }
+        .site-header .host {
+            background-color: var(--accent);
+            color: #000;
+            padding: 0.125rem 0.375rem;
+            font-weight: 700;
+        }
+
+        .theme-toggle {
+            padding: 0.375rem;
+            border: 1px solid var(--border);
+            display: inline-flex;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+        .theme-toggle:hover { background-color: var(--border-hover); }
+        .theme-toggle:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .theme-toggle svg {
+            width: 1rem;
+            height: 1rem;
+            color: var(--icon);
+        }
+        /* Show exactly one icon per theme. Scope the display rules under
+           .theme-toggle so they out-rank the sizing rule above. */
+        .theme-toggle .icon-moon { display: block; }
+        .theme-toggle .icon-sun  { display: none; }
+        html.dark .theme-toggle .icon-moon { display: none; }
+        html.dark .theme-toggle .icon-sun  { display: block; }
+
+        /* ---------- Main ---------- */
+        main {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 2rem;
+        }
+
+        .intro { display: flex; flex-direction: column; gap: 0.5rem; }
+        .prompt {
+            font-size: 1.875rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin: 0;
+        }
+        .tagline {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .bio {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            font-size: 1rem;
+            color: var(--muted);
+            border-left: 2px solid var(--border);
+            padding-left: 1rem;
+        }
+        .bio p { margin: 0; }
+        .bio strong { color: var(--fg-strong); }
+
+        .contact {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--border);
+        }
+        .contact .note {
+            font-size: 0.75rem;
+            color: var(--faint);
+            margin: 0;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .links a {
+            padding: 0.375rem 0.75rem;
+            border: 1px solid var(--border);
+            font-size: 0.75rem;
+            font-weight: 700;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+        .links a:hover {
+            background-color: var(--accent-hover);
+            color: #000;
+            border-color: var(--accent-hover);
+        }
+
+        /* ---------- Footer ---------- */
+        .site-footer {
+            padding-top: 0.5rem;
+            padding-bottom: 1.5rem;
+            text-align: center;
+            font-size: 0.8125rem;
+            color: var(--faint);
+        }
+        .site-footer .glyph {
+            font-size: 1.25rem;
+            line-height: 0;
+            vertical-align: -0.15em;
+        }
+
+        @media (min-width: 640px) {
+            .bio { font-size: 1rem; }
+        }
+
+        /* ---------- Theme switch reveal ---------- */
+        /* Kill the default cross-fade so our circular clip is the only motion */
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+            animation: none;
+            mix-blend-mode: normal;
+        }
+        /* New theme paints on top and gets clipped open from the toggle corner */
+        ::view-transition-new(root) { z-index: 1; }
+        ::view-transition-old(root) { z-index: 0; }
+
+        @media (prefers-reduced-motion: reduce) {
+            body { transition: none; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Test</h1>
+
+    <!-- Header -->
+    <header class="site-header container">
+        <span class="host">[Host: aashif.dev]</span>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme">
+            <!-- Custom moon (shown in light mode) -->
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+            </svg>
+            <!-- Custom sun (shown in dark mode) -->
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4"></circle>
+                <line x1="12" y1="2"  x2="12" y2="4"></line>
+                <line x1="12" y1="20" x2="12" y2="22"></line>
+                <line x1="2"  y1="12" x2="4"  y2="12"></line>
+                <line x1="20" y1="12" x2="22" y2="12"></line>
+                <line x1="4.9" y1="4.9"  x2="6.3" y2="6.3"></line>
+                <line x1="17.7" y1="17.7" x2="19.1" y2="19.1"></line>
+                <line x1="4.9" y1="19.1" x2="6.3" y2="17.7"></line>
+                <line x1="17.7" y1="6.3" x2="19.1" y2="4.9"></line>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="intro">
+            <h1 class="prompt">$ whoami</h1>
+            <p class="tagline">Aashif Ali &mdash; Backend &amp; Security Engineer</p>
+        </div>
+
+        <div class="bio">
+            <p>I build robust, scalable <strong>server-side systems</strong> and design <strong>secure architectures</strong>. My work focuses on breaking things to understand how to build them better, <strong>finding vulnerabilities</strong>, and ensuring <strong>data integrity</strong> across the stack.</p>
+            <p>When I'm not writing <strong>APIs</strong> or manually hunting <strong>bugs</strong>, I'm usually experimenting with <strong>AI agents</strong> to do it for me.</p>
+            <p>Outside the IDE, I keep the meatspace stack running lean. You'll usually catch me maxing out reps in <strong>calisthenics</strong> and the <strong>gym</strong>, or deploying myself to <strong>high altitude</strong> treks for a full system reset.</p>
+        </div>
+
+        <div class="contact">
+            <div class="intro">
+                <h2 class="prompt">$ talk</h2>
+                <p class="tagline">Let's get sh*t done together</p>
+            </div>
+            <p class="note">Open to backend development, security research, bug bounty collaborations — or honestly, just reach out about anything. My inbox is always open.</p>
+            <div class="links">
+                <a href="mailto:hello@aashif.dev">[EMAIL]</a>
+                <a href="https://linkedin.com/in/a45hif" target="_blank" rel="noopener noreferrer">[LINKEDIN]</a>
+                <a href="https://github.com/a45hif" target="_blank" rel="noopener noreferrer">[GITHUB]</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer container">
+        <span class="glyph">&copy;</span> till <span class="glyph">&infin;</span> Aashif Ali. No rights reserved.
+    </footer>
+
+    <!-- Theme logic + reveal animation -->
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var btn = document.getElementById('theme-toggle');
+            var themeColorMeta = document.getElementById('theme-color-meta');
+
+            function syncThemeColor() {
+                var isDark = root.classList.contains('dark');
+                themeColorMeta.setAttribute('content', isDark ? '#09090b' : '#fafafa');
+                btn.setAttribute('aria-pressed', String(isDark));
+            }
+
+            function applyTheme() {
+                var isDark = root.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                syncThemeColor();
+            }
+
+            // Match the tab color to the theme chosen before paint
+            syncThemeColor();
+
+            var supportsVT = typeof document.startViewTransition === 'function';
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            btn.addEventListener('click', function () {
+                if (!supportsVT || reduceMotion) {
+                    applyTheme();
+                    return;
+                }
+
+                // Origin = center of the toggle button (top-right corner of screen)
+                var rect = btn.getBoundingClientRect();
+                var x = rect.left + rect.width / 2;
+                var y = rect.top + rect.height / 2;
+                // Radius needed to cover the farthest corner from the origin
+                var endRadius = Math.hypot(
+                    Math.max(x, window.innerWidth - x),
+                    Math.max(y, window.innerHeight - y)
+                );
+
+                var transition = document.startViewTransition(applyTheme);
+
+                transition.ready.then(function () {
+                    root.animate(
+                        {
+                            clipPath: [
+                                'circle(0px at ' + x + 'px ' + y + 'px)',
+                                'circle(' + endRadius + 'px at ' + x + 'px ' + y + 'px)'
+                            ]
+                        },
+                        {
+                            duration: 600,
+                            easing: 'ease-in-out',
+                            pseudoElement: '::view-transition-new(root)'
+                        }
+                    );
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
