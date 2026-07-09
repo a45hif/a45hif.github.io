@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <!-- Full background (square so qlmanage renders 1:1; we crop the centre band) -->
+  <rect width="1200" height="1200" fill="#09090b"/>
+
+  <!-- OG content is the centred 1200x630 band: y 285..915 -->
+  <g transform="translate(0,285)">
+    <!-- Terminal window -->
+    <rect x="70" y="70" width="1060" height="490" rx="16" fill="#101014" stroke="#27272a" stroke-width="1.5"/>
+
+    <!-- Title bar dots -->
+    <circle cx="104" cy="106" r="8" fill="#ff5f56"/>
+    <circle cx="132" cy="106" r="8" fill="#ffbd2e"/>
+    <circle cx="160" cy="106" r="8" fill="#27c93f"/>
+    <text x="600" y="112" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="20" fill="#71717a">aashif.dev — zsh</text>
+
+    <!-- Host badge -->
+    <rect x="110" y="160" width="258" height="40" fill="#2bff88"/>
+    <text x="124" y="188" font-family="ui-monospace, Menlo, monospace" font-size="22" font-weight="700" fill="#000000">[Host: aashif.dev]</text>
+
+    <!-- $ whoami -->
+    <text x="110" y="312" font-family="ui-monospace, Menlo, monospace" font-size="76" font-weight="700" fill="#fafafa">$ whoami</text>
+
+    <!-- Subtitle -->
+    <text x="110" y="392" font-family="ui-monospace, Menlo, monospace" font-size="38" font-weight="700" fill="#2bff88">Aashif Ali — Backend &amp; Security Engineer</text>
+
+    <!-- Tagline -->
+    <text x="110" y="470" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#a1a1aa">&gt; Let's get sh*t done together.</text>
+  </g>
+</svg>
